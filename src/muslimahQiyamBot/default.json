@@ -1,0 +1,87 @@
+{
+  "periode": "18-25 April 2021",
+  "day": 5,
+  "group": {
+    "name": "Mentari",
+    "no": "3",
+    "member": "30",
+    "manager": {
+      "admin": "Adam",
+      "asmin": "Idris",
+      "bendahara": "Nuh"
+    }
+  },
+  "members": [
+    {
+      "id": "1",
+      "name": "Adam",
+      "city": "Pemalang",
+      "phone": "08123456789",
+      "status": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "group": "1"
+    },
+    {
+      "id": "2",
+      "name": "Maryam",
+      "city": "Bekasi",
+      "phone": "08123456788",
+      "status": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "group": "2"
+    },
+    {
+      "id": "3",
+      "name": "Fatimah",
+      "city": "Sumedang",
+      "phone": "08123456777",
+      "status": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "group": "3"
+    }
+  ],
+  "groups": [
+    {
+      "id": "1",
+      "name": "AL FAJR",
+      "pjh": "Adam"
+    },
+    {
+      "id": "2",
+      "name": "ADH DHUHA",
+      "pjh": "Maryam"
+    },
+    {
+      "id": "3",
+      "name": "AL ASHR",
+      "pjh": "Fatimah"
+    }
+  ],
+  "doas": [
+    "اللَّهُمَّ إِنَّكَ عَفُوٌّ تُحِبُّ الْعَفْوَ فَاعْفُ عَنِّى\n_‘Allahumma innaka ‘afuwwun tuhibbul ‘afwa fa’fu anni’_\n\nArtinya: Ya Allah, Engkau Maha Memberikan Maaf dan Engkau suka memberikan maaf, menghapus kesalahan, karenanya maafkanlah aku, hapuslah dosa-dosaku.\n"
+  ],
+  "motivasis": [
+    "_”Sesungguhnya Allah membebaskan beberapa orang dari api neraka pada setiap hari di bulan Ramadhan, dan setiap muslim apabila dia memanjatkan do’a maka pasti dikabulkan.”_\n\nArtinya: Ya Allah, Engkau Maha Memberikan Maaf dan Engkau suka memberikan maaf, menghapus kesalahan, karenanya maafkanlah aku, hapuslah dosa-dosaku.\n"
+  ],
+  "importantNote": "LAPORAN PALING LAMBAT PUKUL 07 .00 WIB",
+  "notes": [
+    "Tiga kali berturut2 dalam seminggu atau lebih banyak tidak sholatnya, maka masuk list karantina. \n",
+    "Beristighfar, mohon pertolongan Allah, bangkit dan perbaiki sholat, tiga kali berturut2 sholat tahajud maka kembali ke daftar utama. \n",
+    "Semoga Allah yang memberikan hidayah, taufik dan rahmatNya pada kita semua. \nAamiin ya rabbal alamin.."
+  ]
+}
