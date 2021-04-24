@@ -64,32 +64,32 @@ Ex (short): `>> 1 💯`
 Melihat recap terakhir.
 
 ```ssh
-recap-hari <N>
+>> recap-hari <N>
 ```
 Melihat status recap di hari ke-N. Dan mengubah perhitungan menjadi Hari ke-N.
 Ex: `>> recap-hari 3`
 
 ```ssh
-belum-recap
+>> belum-recap
 ```
 Me-list daftar nama yang belum recap pada hari ke-N.
 
 ➖➖➖➖➖➖➖➖➖➖➖
 
 ```ssh
-ubah-periode
+>> ubah-periode
 ```
 Update periode.
 Ex: `>> ubah-periode 26 April - 3 Mei 2021`
 
 ```ssh
-ubah-pjh <GRUP KE-N> <NAMA>
+>> ubah-pjh <GRUP KE-N> <NAMA>
 ```
 Ubah PJH grup.
 Ex: `>> ubah-pjh 2 Fulanah`
 
 ```ssh
-ubah-admin | ubah-asmin | ubah-bendahara <NAMA>
+>> ubah-admin | ubah-asmin | ubah-bendahara <NAMA>
 ```
 Update pengelola.
 Ex: `>> ubah-admin Fulanah_Binti_Fulan`
@@ -97,43 +97,43 @@ Ex: `>> ubah-admin Fulanah_Binti_Fulan`
 ➖➖➖➖➖➖➖➖➖➖➖
 
 ```ssh
-tambah-doa <PESAN>
+>> tambah-doa <PESAN>
 ```
 Menambahkan list doa.
 
 ```ssh
-hapus-doa
+>> hapus-doa
 ```
 Menghapus doa terakhir dari list doa.
 
 ```ssh
-tambah-motivasi <PESAN>
+>> tambah-motivasi <PESAN>
 ```
 Menambahkan list motivasi.
 
 ```ssh
-hapus-motivasi
+>> hapus-motivasi
 ```
 Menghapus motivasi terakhir dari list motivasi.
 
 ```ssh
-tambah-catatan <PESAN>
+>> tambah-catatan <PESAN>
 ```
 Menambahkan list catatan.
 
 ```ssh
-hapus-catatan
+>> hapus-catatan
 ```
 Menghapus catatan terakhir dari list catatan.
 
 ```ssh
-ubah-catatan-penting <PESAN>
+>> ubah-catatan-penting <PESAN>
 ```
 Mengubah catatan penting.
 
 ➖➖➖➖➖➖➖➖➖➖➖
 
 ```ssh
-help
+>> help
 ```
 Kumpulan perintah.
