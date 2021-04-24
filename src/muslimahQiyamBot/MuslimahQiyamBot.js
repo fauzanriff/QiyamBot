@@ -549,7 +549,7 @@ class MuslimahQiyamBot {
     const tUdzur = this.totalUdzur(day);
     const total = this.data.members.length;
     let _percentage = Math.round((tDone/(total - tUdzur)) * 100);
-    return `💯 #0${this.data.group.no}#0${this.data.group.no}#${tDone}/${total}-${this.convertInt(tUdzur)}=${_percentage}_${this.data.group.manager.admin}`;
+    return `💯 #0${this.data.group.no}#0${this.data.group.no}#${tDone}/${total}-${this.convertInt(tUdzur)}=${_percentage}%_${this.data.group.manager.admin}`;
   }
 
   helpMessage() {
