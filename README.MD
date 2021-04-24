@@ -51,60 +51,89 @@ npm run start
 ```
 
 ## Command
-➖➖➖➖➖➖➖➖➖➖➖
-*>> <NOMOR>. <NAMA> <ICON>*
-_Update status._
-_Contoh: '>> 1. Fulanah 💯'_
-_Contoh (short): '>> 1 💯'_
+```ssh
+>> <NOMOR>. <NAMA> <ICON>
+```
+Update status.
+Ex: `>> 1. Fulanah 💯`
+Ex (short): `>> 1 💯`
 
-*>> recap*
-_Melihat recap terakhir._
+```ssh
+>> recap
+```
+Melihat recap terakhir.
 
-*>> recap-hari <N>*
-_Melihat status recap di hari ke-N. Dan mengubah perhitungan menjadi Hari ke-N._
-_Contoh: '>> recap-hari 3'_
+```ssh
+recap-hari <N>
+```
+Melihat status recap di hari ke-N. Dan mengubah perhitungan menjadi Hari ke-N.
+Ex: `>> recap-hari 3`
 
-*>> belum-recap*
-_Me-list daftar nama yang belum recap pada hari ke-N._
-
-➖➖➖➖➖➖➖➖➖➖➖
-
-*>> ubah-periode*
-_Update periode._
-_Contoh: '>> ubah-periode 26 April - 3 Mei 2021'
-
-*>> ubah-pjh <GRUP KE-N> <NAMA>*
-_Ubah PJH grup._
-_Contoh: '>> ubah-pjh 2 Fulanah'
-
-*>> ubah-admin | ubah-asmin | ubah-bendahara <NAMA>*
-_Update pengelola._
-_Contoh: '>> ubah-admin Fulanah_Binti_Fulan'_
+```ssh
+belum-recap
+```
+Me-list daftar nama yang belum recap pada hari ke-N.
 
 ➖➖➖➖➖➖➖➖➖➖➖
 
-*>> tambah-doa <PESAN>*
-_Menambahkan list doa._
+```ssh
+ubah-periode
+```
+Update periode.
+Ex: `>> ubah-periode 26 April - 3 Mei 2021`
 
-*>> hapus-doa*
-_Menghapus doa terakhir dari list doa._
+```ssh
+ubah-pjh <GRUP KE-N> <NAMA>
+```
+Ubah PJH grup.
+Ex: `>> ubah-pjh 2 Fulanah`
 
-*>> tambah-motivasi <PESAN>*
-_Menambahkan list motivasi._
-
-*>> hapus-motivasi*
-_Menghapus motivasi terakhir dari list motivasi._
-
-*>> tambah-catatan <PESAN>*
-_Menambahkan list catatan._
-
-*>> hapus-catatan*
-_Menghapus catatan terakhir dari list catatan._
-
-*>> ubah-catatan-penting <PESAN>*
-_Mengubah catatan penting._
+```ssh
+ubah-admin | ubah-asmin | ubah-bendahara <NAMA>
+```
+Update pengelola.
+Ex: `>> ubah-admin Fulanah_Binti_Fulan`
 
 ➖➖➖➖➖➖➖➖➖➖➖
 
-*>> help*
-_Kumpulan perintah._
+```ssh
+tambah-doa <PESAN>
+```
+Menambahkan list doa.
+
+```ssh
+hapus-doa
+```
+Menghapus doa terakhir dari list doa.
+
+```ssh
+tambah-motivasi <PESAN>
+```
+Menambahkan list motivasi.
+
+```ssh
+hapus-motivasi
+```
+Menghapus motivasi terakhir dari list motivasi.
+
+```ssh
+tambah-catatan <PESAN>
+```
+Menambahkan list catatan.
+
+```ssh
+hapus-catatan
+```
+Menghapus catatan terakhir dari list catatan.
+
+```ssh
+ubah-catatan-penting <PESAN>
+```
+Mengubah catatan penting.
+
+➖➖➖➖➖➖➖➖➖➖➖
+
+```ssh
+help
+```
+Kumpulan perintah.

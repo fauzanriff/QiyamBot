@@ -578,7 +578,7 @@ _Contoh: '>> ubah-periode 26 April - 3 Mei 2021'
 
 *>> ubah-pjh <GRUP KE-N> <NAMA>*
 _Ubah PJH grup._
-_Contoh: '>> ubah-pjh 2 Fulanah'
+_Contoh: '>> ubah-pjh 2 Fulanah'_
 
 *>> ubah-admin | ubah-asmin | ubah-bendahara <NAMA>*
 _Update pengelola._
