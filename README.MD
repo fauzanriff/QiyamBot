@@ -51,6 +51,8 @@ npm run start
 ```
 
 ## Command
+
+### Member Action
 ```ssh
 >> <NOMOR>. <NAMA> <ICON>
 ```
@@ -74,7 +76,7 @@ Ex: `>> recap-hari 3`
 ```
 Me-list daftar nama yang belum recap pada hari ke-N.
 
-➖➖➖➖➖➖➖➖➖➖➖
+### Group Management
 
 ```ssh
 >> ubah-periode
@@ -94,7 +96,7 @@ Ex: `>> ubah-pjh 2 Fulanah`
 Update pengelola.
 Ex: `>> ubah-admin Fulanah_Binti_Fulan`
 
-➖➖➖➖➖➖➖➖➖➖➖
+### Group Meta
 
 ```ssh
 >> tambah-doa <PESAN>
@@ -131,7 +133,7 @@ Menghapus catatan terakhir dari list catatan.
 ```
 Mengubah catatan penting.
 
-➖➖➖➖➖➖➖➖➖➖➖
+### Others
 
 ```ssh
 >> help
