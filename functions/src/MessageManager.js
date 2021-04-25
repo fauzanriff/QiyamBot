@@ -132,7 +132,7 @@ class MessageManager {
   }
 
   removeMQBRemote(remote){
-    this.data[MQB] = this.data[MQB].filter((adrm) => adrm !== remote);
+    this.data[MQB] = this.data[MQB].remotes.filter((adrm) => adrm !== remote);
   }
 
   proccessSendReqPublic(msg){
