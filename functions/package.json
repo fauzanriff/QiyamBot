@@ -4,7 +4,7 @@
   "scripts": {
     "serve": "firebase emulators:start --only functions",
     "shell": "firebase functions:shell",
-    "start": "npm run shell",
+    "start": "node WABot.js",
     "deploy": "firebase deploy --only functions",
     "logs": "firebase functions:log"
   },
@@ -15,7 +15,7 @@
     "$commands": "./src/commands"
   },
   "engines": {
-    "node": "12"
+    "node": "12.x.x"
   },
   "main": "index.js",
   "dependencies": {
