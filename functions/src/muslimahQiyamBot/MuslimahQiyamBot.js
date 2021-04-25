@@ -39,10 +39,10 @@ ICON_MESSAGE['🚗'] = PERGI;
 
 class MuslimahQiyamBot {
 
-  constructor() {
-    path.resolve("Relative file path");
+  constructor(client) {
     let rawdata = fs.readFileSync(path.resolve('src/muslimahQiyamBot/data.json'));
     this.data = JSON.parse(rawdata);
+    this.client = client;
   }
 
   saveJson() {
@@ -82,74 +82,100 @@ class MuslimahQiyamBot {
    * 
    */
 
-  handleMessage(client, msg){
+  handleMessage(msg){
     const args = msg.body.split(' ');
     const command = args[1];
+    const client = this.client;
 
     switch (command) {
       case 'recap': {
-        return client.sendMessage(msg.from, this.renderMessage());
+        client.sendMessage(msg.from, this.renderMessage());
+        break;
       }
+      case 'ya':
+        if (this.data.resetConfirm){
+          this.setPeriode(this.data.resetConfirm)
+          this.changePeriode();
+          client.sendMessage(msg.from, this.renderPeriode());
+          this.data.resetConfirm = "";
+        }
+        break;
       case 'ubah-periode': {
-        this.setPeriode(msg.body.replace('>> ubah-periode ', ''))
-        return client.sendMessage(msg.from, this.renderPeriode());
+        const _period = msg.body.replace('>> ubah-periode ', '');
+        this.data.resetConfirm = _period;
+        client.sendMessage(msg.from, this.robotResponse(`Kamu yakin akan ubah periode ke ${_period}?\nSeluruh status akan di reset ulang. Balas '>> ya' untuk melanjutkan.`));
+        break;
       }
       case 'ubah-admin': {
         this.setAdmin(args[2].replace('_', ' '));
-        return client.sendMessage(msg.from, this.renderManager());
+        client.sendMessage(msg.from, this.renderManager());
+        break;
       }
       case 'ubah-asmin': {
         this.setAsmin(args[2].replace('_', ' '));
-        return client.sendMessage(msg.from, this.renderManager());
+        client.sendMessage(msg.from, this.renderManager());
+        break;
       }
       case 'ubah-bendahara': {
         this.setBendahara(args[2].replace('_', ' '));
-        return client.sendMessage(msg.from, this.renderManager());
+        client.sendMessage(msg.from, this.renderManager());
+        break;
       }
       case 'tambah-doa': {
         this.addDoa(msg.body.replace('>> tambah-doa ', ''));
-        return client.sendMessage(msg.from, this.renderDoas() || "< Doa Kosong >");
+        client.sendMessage(msg.from, this.renderDoas() || "< Doa Kosong >");
+        break;
       }
       case 'hapus-doa': {
         this.removeDoa();
-        return client.sendMessage(msg.from, this.renderDoas() || "< Doa Kosong >");
+        client.sendMessage(msg.from, this.renderDoas() || "< Doa Kosong >");
+        break;
       }
       case 'tambah-motivasi': {
         this.addMotivasi(msg.body.replace('>> tambah-motivasi ', ''));
-        return client.sendMessage(msg.from, this.renderMotivasis() || "< Motivasi Kosong >");
+        client.sendMessage(msg.from, this.renderMotivasis() || "< Motivasi Kosong >");
+        break;
       }
       case 'hapus-motivasi': {
         this.removeMotivasi();
-        return client.sendMessage(msg.from, this.renderMotivasis() || "< Motivasi Kosong >");
+        client.sendMessage(msg.from, this.renderMotivasis() || "< Motivasi Kosong >");
+        break;
       }
       case 'tambah-catatan': {
         this.addNote(msg.body.replace('>> tambah-catatan ', ''));
-        return client.sendMessage(msg.from, this.renderNote() || "< Catatan Kosong >");
+        client.sendMessage(msg.from, this.renderNote() || "< Catatan Kosong >");
+        break;
       }
       case 'hapus-catatan': {
         this.removeNote();
-        return client.sendMessage(msg.from, this.renderNote() || "< Catatan Kosong >");
+        client.sendMessage(msg.from, this.renderNote() || "< Catatan Kosong >");
+        break;
       }
       case 'ubah-catatan-penting': {
         this.setImportantNote(msg.body.replace('>> ubah-catatan-penting ', ''));
-        return client.sendMessage(msg.from, this.renderImportantNote() || "< Catatan Penting Kosong >");
+        client.sendMessage(msg.from, this.renderImportantNote() || "< Catatan Penting Kosong >");
+        break;
       }
       case 'recap-hari': {
         const nDay = msg.body.match(/\d+/);
         if (nDay){
           this.setDay(nDay)
           client.sendMessage(msg.from, this.renderRecap(nDay[0]));
-          return client.sendMessage(msg.from, this.renderPercentage(nDay[0]));
+          client.sendMessage(msg.from, this.renderPercentage(nDay[0]));
+          break;
         }
         client.sendMessage(msg.from, this.renderRecap(this.data.day));
-        return client.sendMessage(msg.from, this.renderPercentage(this.data.day));
+        client.sendMessage(msg.from, this.renderPercentage(this.data.day));
+        break;
       }
       case 'belum-recap':{
         const nDay = msg.body.match(/\d+/);
         if (nDay){
-          return client.sendMessage(msg.from, this.renderNotRecaped(nDay[0]));
+          client.sendMessage(msg.from, this.renderNotRecaped(nDay[0]));
+          break;
         }
-        return client.sendMessage(msg.from, this.renderNotRecaped(this.data.day));
+        client.sendMessage(msg.from, this.renderNotRecaped(this.data.day));
+        break;
       }
       case 'ubah-pjh': {
         const nGroup = parseInt(args[2]);
@@ -163,10 +189,12 @@ class MuslimahQiyamBot {
         break;
       }
       case 'karantina': {
-        return client.sendMessage(msg.from, this.renderQuarantineStatus());
+        client.sendMessage(msg.from, this.renderQuarantineStatus());
+        break;
       }
       case 'help': {
-        return client.sendMessage(msg.from, this.helpMessage());
+        client.sendMessage(msg.from, this.helpMessage());
+        break;
       }
       // >> NN. <Name> 🗑
       // >> NN. <Name> <Stat>
@@ -282,6 +310,17 @@ class MuslimahQiyamBot {
 
   setImportantNote(msg){
     this.data.importantNote = msg;
+  }
+
+  changePeriode(){
+    this.data.day = 1;
+    this.clearStatus();
+  }
+
+  clearStatus(){
+    for (let i =0; i < this.data.members.length; i++){
+      this.data.members[i].status = [];
+    }
   }
 
   totalDone(day){
@@ -550,6 +589,11 @@ class MuslimahQiyamBot {
     const total = this.data.members.length;
     let _percentage = Math.round((tDone/(total - tUdzur)) * 100);
     return `💯 #0${this.data.group.no}#0${this.data.group.no}#${tDone}/${total}-${this.convertInt(tUdzur)}=${_percentage}%_${this.data.group.manager.admin}`;
+  }
+
+  robotResponse(msg, success){
+    let _stat = success === undefined ? "" : (success ? '✅' : '🚫');
+    return `🤖 : ${msg} ${_stat}`;
   }
 
   helpMessage() {

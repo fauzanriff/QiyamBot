@@ -1,13 +1,16 @@
 require("better-module-alias")(__dirname);
 const fs = require("fs");
+const path = require('path');
 const qrcode = require("qrcode-terminal");
 const loadCommands = require("$commands/init/load");
 const { Client, Location } = require("whatsapp-web.js");
-const MuslimahQiyamBot = require("./src/muslimahQiyamBot/MuslimahQiyamBot.js");
-const MQ = new MuslimahQiyamBot();
+const MessageManager = require(path.resolve("src/MessageManager.js"));
+// const MuslimahQiyamBot = require(path.resolve("src/muslimahQiyamBot/MuslimahQiyamBot.js"));
+let MManager;
+// const MQ = new MuslimahQiyamBot();
 
 // don't change SESSION_FILE_PATH to better-module-alias
-const SESSION_FILE_PATH = "./whatsapp-session.json";
+const SESSION_FILE_PATH = ("./whatsapp-session.json");
 let sessionCfg;
 if (fs.existsSync(SESSION_FILE_PATH)) {
   sessionCfg = require(SESSION_FILE_PATH);
@@ -30,7 +33,7 @@ client.on("qr", (qr) => {
 });
 
 client.on("authenticated", (session) => {
-  console.log("AUTHENTICATED", session);
+  console.log("AUTHENTICATED");
   sessionCfg = session;
   fs.writeFile(SESSION_FILE_PATH, JSON.stringify(session), function (err) {
     if (err) {
@@ -46,16 +49,17 @@ client.on("auth_failure", (msg) => {
 
 client.on("ready", () => {
   console.log("READY");
+  MManager = new MessageManager(client);
   /** Load all of bot command here */
   loadCommands(client);
 });
 
 client.on("message", async (msg) => {
   console.log("MESSAGE RECEIVED", msg);
-  if (msg.id.remote === '6285624247824-1619174698@g.us' && msg.body.includes('>>')) {
-    MQ.handleMessage(client, msg);
-  }
-  // MuslimahQiyamBot.handleMessage(msg);
+  MManager.handle(msg);
+  // if (msg.id.remote === '6285624247824-1619174698@g.us' && msg.body.includes('>>')) {
+  //   MQ.handleMessage(client, msg);
+  // }
 });
 
 client.on("message_create", (msg) => {
