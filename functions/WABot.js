@@ -2,7 +2,7 @@ require("better-module-alias")(__dirname);
 const fs = require("fs");
 const path = require('path');
 const qrcode = require("qrcode-terminal");
-const loadCommands = require("$commands/init/load");
+// const loadCommands = require("$commands/init/load");
 const { Client, Location } = require("whatsapp-web.js");
 const MessageManager = require(path.resolve("src/MessageManager.js"));
 // const MuslimahQiyamBot = require(path.resolve("src/muslimahQiyamBot/MuslimahQiyamBot.js"));
@@ -18,7 +18,7 @@ if (fs.existsSync(SESSION_FILE_PATH)) {
 
 const client = new Client({
   // to run chromium set headless = false
-  puppeteer: { headless: true },
+  puppeteer: { headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] },
   session: sessionCfg,
 });
 // You can use an existing session and avoid scanning a QR code by adding a "session" object to the client options.
@@ -51,7 +51,7 @@ client.on("ready", () => {
   console.log("READY");
   MManager = new MessageManager(client);
   /** Load all of bot command here */
-  loadCommands(client);
+  // loadCommands(client);
 });
 
 client.on("message", async (msg) => {
