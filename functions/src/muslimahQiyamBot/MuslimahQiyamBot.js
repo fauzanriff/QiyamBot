@@ -88,7 +88,7 @@ class MuslimahQiyamBot {
     const client = this.client;
 
     switch (command) {
-      case 'recap': {
+      case 'rekap': {
         client.sendMessage(msg.from, this.renderMessage());
         break;
       }
@@ -100,10 +100,17 @@ class MuslimahQiyamBot {
           this.data.resetConfirm = "";
         }
         break;
+      case 'tidak':
+        if (this.data.resetConfirm){
+          this.setPeriode(this.data.resetConfirm);
+          client.sendMessage(msg.from, this.renderPeriode());
+          this.data.resetConfirm = "";
+        }
+        break;
       case 'ubah-periode': {
         const _period = msg.body.replace('>> ubah-periode ', '');
         this.data.resetConfirm = _period;
-        client.sendMessage(msg.from, this.robotResponse(`Kamu yakin akan ubah periode ke ${_period}?\nSeluruh status akan di reset ulang. Balas '>> ya' untuk melanjutkan.`));
+        client.sendMessage(msg.from, this.robotResponse(`Kamu yakin akan ubah periode ke ${_period}?\nSeluruh status akan di reset ulang. Balas '>> ya' untuk melanjutkan atau '>> tidak' untuk mengganti periode tanpa menghapus data.`));
         break;
       }
       case 'ubah-admin': {
@@ -156,7 +163,7 @@ class MuslimahQiyamBot {
         client.sendMessage(msg.from, this.renderImportantNote() || "< Catatan Penting Kosong >");
         break;
       }
-      case 'recap-hari': {
+      case 'rekap-hari': {
         const nDay = msg.body.match(/\d+/);
         if (nDay){
           this.setDay(nDay)
@@ -168,7 +175,7 @@ class MuslimahQiyamBot {
         client.sendMessage(msg.from, this.renderPercentage(this.data.day));
         break;
       }
-      case 'belum-recap':{
+      case 'belum-rekap':{
         const nDay = msg.body.match(/\d+/);
         if (nDay){
           client.sendMessage(msg.from, this.renderNotRecaped(nDay[0]));
@@ -536,13 +543,13 @@ class MuslimahQiyamBot {
       return !member.status[_day-1] || member.status[_day-1] === UNKNOWN;
     });
     if (members.length > 0){
-      return `* 📅 BELUM RECAP HARI KE-${_day} *\n` +
+      return `* 📅 BELUM REKAP HARI KE-${_day} *\n` +
         `===============*${members.length} orang*\n` +
         members.map(function(member){
           return that.renderMemberStatus(member);
         }).join('\n');
     }
-    return `* 📅 RECAP HARI KE-${_day} LENGKAP *`
+    return `* 📅 REKAP HARI KE-${_day} LENGKAP *`
   }
 
   getOverallStatus(members, day){
@@ -604,15 +611,15 @@ _Update status._
 _Contoh: '>> 1. Fulanah 💯'_
 _Contoh (short): '>> 1 💯'_
 
-*>> recap*
-_Melihat recap terakhir._
+*>> rekap*
+_Melihat rekap terakhir._
 
-*>> recap-hari <N>*
-_Melihat status recap di hari ke-N. Dan mengubah perhitungan menjadi Hari ke-N._
-_Contoh: '>> recap-hari 3'_
+*>> rekap-hari <N>*
+_Melihat status rekap di hari ke-N. Dan mengubah perhitungan menjadi Hari ke-N._
+_Contoh: '>> rekap-hari 3'_
 
-*>> belum-recap*
-_Me-list daftar nama yang belum recap pada hari ke-N._
+*>> belum-rekap*
+_Me-list daftar nama yang belum rekap pada hari ke-N._
 
 ➖➖➖➖➖➖➖➖➖➖➖
 
