@@ -55,7 +55,7 @@ client.on("ready", () => {
 });
 
 client.on("message", async (msg) => {
-  console.log("MESSAGE RECEIVED", msg);
+  // console.log("MESSAGE RECEIVED", msg);
   MManager.handle(msg);
   // if (msg.id.remote === '6285624247824-1619174698@g.us' && msg.body.includes('>>')) {
   //   MQ.handleMessage(client, msg);
@@ -71,7 +71,7 @@ client.on("message_create", (msg) => {
 
 client.on("message_revoke_everyone", async (after, before) => {
   // Fired whenever a message is deleted by anyone (including you)
-  console.log(after); // message after it was deleted.
+  // console.log(after); // message after it was deleted.
   if (before) {
     console.log(before); // message before it was deleted.
   }
@@ -79,7 +79,7 @@ client.on("message_revoke_everyone", async (after, before) => {
 
 client.on("message_revoke_me", async (msg) => {
   // Fired whenever a message is only deleted in your own view.
-  console.log(msg.body); // message before it was deleted.
+  // console.log(msg.body); // message before it was deleted.
 });
 
 client.on("message_ack", (msg, ack) => {
@@ -100,25 +100,25 @@ client.on("message_ack", (msg, ack) => {
 
 client.on("group_join", (notification) => {
   // User has joined or been added to the group.
-  console.log("join", notification);
+  // console.log("join", notification);
   notification.reply("User joined.");
 });
 
 client.on("group_leave", (notification) => {
   // User has left or been kicked from the group.
-  console.log("leave", notification);
+  // console.log("leave", notification);
   notification.reply("User left.");
 });
 
 client.on("group_update", (notification) => {
   // Group picture, subject or description has been updated.
-  console.log("update", notification);
+  // console.log("update", notification);
 });
 
 client.on("change_battery", (batteryInfo) => {
   // Battery percentage for attached device has changed
   const { battery, plugged } = batteryInfo;
-  console.log(`Battery: ${battery}% - Charging? ${plugged}`);
+  // console.log(`Battery: ${battery}% - Charging? ${plugged}`);
 });
 
 client.on("disconnected", (reason) => {
