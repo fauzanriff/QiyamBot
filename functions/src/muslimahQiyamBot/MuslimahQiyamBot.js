@@ -195,31 +195,60 @@ class MuslimahQiyamBot {
         }
         break;
       }
+      case 'add-member': {
+        const name = args[3] || undefined;
+        if (name) {
+          const city = args[4] || "Indonesia";
+          const phone = args[5] || "+62-XXX";
+          const group = args[6] || "1";
+          const newId = this.addMember({
+            name,
+            city,
+            phone,
+            group
+          });
+          const newMember = this.getMember(newId);
+          client.sendMessage(msg.from, this.renderMemberStatus(newMember))
+        }
+        break;
+      }
+      case 'delete-member': {
+        const getId = msg.body.match(/\d+/);
+        if (getId) {
+          const id = getId[0];
+          if (this.memberExist(id)) {
+            const deletedMember = this.getMember(id);
+            this.deleteMember(id);
+            this.renderMemberStatusDeleted(deletedMember);
+          }
+        }
+        break;
+      }
       case 'ubah-member': {
         const getId = msg.body.match(/\d+/);
-	if (getId) {
+        if (getId) {
           const id = getId[0];
-	  const name = args[3];
+          const name = args[3];
           const city = args[4];
           const phone = args[5];
-	  if (this.memberExist(id)){
+          if (this.memberExist(id)){
             let member = this.getMember(id);
             let holder = {};
-	    if (name) {
-	      holder.name = name;
-	    }
+            if (name) {
+              holder.name = name;
+            }
             if (city) {
               holder.city = city;
-	    }
+            }
             if (phone) {
-	      holder.phone = phone;
-	    }
-	    this.setMember(id, {...member, ...holder});
+              holder.phone = phone;
+            }
+	          this.setMember(id, {...member, ...holder});
             const newMember = this.getMember(id);
-	    client.sendMessage(msg.from, this.renderMemberStatus(newMember))
-	  }
-	}
-	break;
+	          client.sendMessage(msg.from, this.renderMemberStatus(newMember))
+	        }
+        }
+	      break;
       }
       case 'karantina': {
         client.sendMessage(msg.from, this.renderQuarantineStatus());
@@ -281,6 +310,25 @@ class MuslimahQiyamBot {
     if (_day) {
       this.data.day = _day;
     }
+  }
+
+  addMember({ name, city, phone, group }) {
+    let _newId = parseInt(this.data.members[this.data.members.length - 1].id) + 1
+    this.data.members.push({
+      id: _newId,
+      name,
+      city,
+      phone,
+      status: [],
+      group
+    });
+    return _newId;
+  }
+
+  deleteMember(id) {
+    this.data.members = this.data.members.filter(function (member) {
+      return member.id !== id;
+    })
   }
 
   getMember(id) {
@@ -485,6 +533,13 @@ class MuslimahQiyamBot {
     return `*${member.id}. ${member.name} (${member.city})*\n` +
       `${member.phone}\n` +
       `${that.renderStatus(member.status)}`;
+  }
+
+  renderMemberStatusDeleted(member){
+    const that = this;
+    return `*${member.id}. ${member.name} (${member.city})*\n` +
+      `${member.phone}\n` +
+      `*DELETED*\n`;
   }
 
   renderPeriode() {
