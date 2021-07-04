@@ -196,11 +196,11 @@ class MuslimahQiyamBot {
         break;
       }
       case 'add-member': {
-        const name = args[3] || undefined;
+        const name = args[2] || undefined;
         if (name) {
-          const city = args[4] || "Indonesia";
-          const phone = args[5] || "+62-XXX";
-          const group = args[6] || "1";
+          const city = args[3] || "Indonesia";
+          const phone = args[4] || "+62-XXX";
+          const group = args[5] || "1";
           const newId = this.addMember({
             name,
             city,
@@ -219,7 +219,7 @@ class MuslimahQiyamBot {
           if (this.memberExist(id)) {
             const deletedMember = this.getMember(id);
             this.deleteMember(id);
-            this.renderMemberStatusDeleted(deletedMember);
+            client.sendMessage(msg.from, this.renderMemberStatusDeleted(deletedMember));
           }
         }
         break;
@@ -326,9 +326,12 @@ class MuslimahQiyamBot {
   }
 
   deleteMember(id) {
+    console.log({id});
     this.data.members = this.data.members.filter(function (member) {
       return member.id !== id;
     })
+
+    console.log({ members: this.data.members });
   }
 
   getMember(id) {
