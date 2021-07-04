@@ -195,6 +195,32 @@ class MuslimahQiyamBot {
         }
         break;
       }
+      case 'ubah-member': {
+        const getId = msg.body.match(/\d+/);
+	if (getId) {
+          const id = getId[0];
+	  const name = args[3];
+          const city = args[4];
+          const phone = args[5];
+	  if (this.memberExist(id)){
+            let member = this.getMember(id);
+            let holder = {};
+	    if (name) {
+	      holder.name = name;
+	    }
+            if (city) {
+              holder.city = city;
+	    }
+            if (phone) {
+	      holder.phone = phone;
+	    }
+	    this.setMember(id, {...member, ...holder});
+            const newMember = this.getMember(id);
+	    client.sendMessage(msg.from, this.renderMemberStatus(newMember))
+	  }
+	}
+	break;
+      }
       case 'karantina': {
         client.sendMessage(msg.from, this.renderQuarantineStatus());
         break;
@@ -587,7 +613,7 @@ class MuslimahQiyamBot {
     '❌ : '+ that.convertInt(ovstat.UNKNOWN) +'\n' +
     'ℹ️ : '+ that.convertInt(ovstat.IZIN) +'\n' +
     '🚗 : '+ that.convertInt(ovstat.PERGI) +'\n' +
-    '👭🏻 : '+ that.data.group.member +'\n\n';
+    '👭🏻 : '+ that.data.members.length +'\n\n';
   }
 
   renderPercentage(day){
